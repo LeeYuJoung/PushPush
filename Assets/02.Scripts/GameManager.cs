@@ -27,9 +27,6 @@ public class GameManager : MonoBehaviour
     public int maxLv = 10;
     public int maxBackCount = 3;
 
-    public float currentTiem = 0;
-    public float dieCoolTime = 0.35f;
-
     public bool isStart = true;
     public bool isEnd = false;
 
@@ -114,13 +111,8 @@ public class GameManager : MonoBehaviour
             {
                 isEnd = true;
                 playerController.playerAnimation.SetTrigger("DIE");
+                StartCoroutine(OnDie());
 
-                while (currentTiem < dieCoolTime)
-                {
-                    currentTiem += Time.deltaTime;
-                }
-
-                UIManager.Instance().GameOver();
                 return;
             }
             UIManager.Instance().HPSlider(maxBackCount);
@@ -141,11 +133,24 @@ public class GameManager : MonoBehaviour
         mapGenerator.MapDestroy(currentLv);
         UIManager.Instance().timer = 0;
         UIManager.Instance().stageClearPanel.SetActive(false);
+        UIManager.Instance().stageText.text = string.Format("Stage{0:00}", currentLv);
         isStart = true;
     }
 
     public void Retry()
     {
         mapGenerator.MapDestroy(currentLv);
+        UIManager.Instance().timer = 0;
+        UIManager.Instance().gameOverPanel.SetActive(false);
+
+        maxBackCount = 3;
+        isStart = true;
+
+    }
+
+    IEnumerator OnDie()
+    {
+        yield return new WaitForSeconds(0.85f);
+        UIManager.Instance().GameOver();
     }
 }

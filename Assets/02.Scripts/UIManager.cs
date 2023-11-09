@@ -13,8 +13,9 @@ public class UIManager : MonoBehaviour
 
     public GameObject stageClearPanel;
     public GameObject gameOverPanel;
-    public GameObject[] hpSliders;
+    public CanvasGroup[] hpSliders;
 
+    public Text stageText;
     public Text stageFinalTimeText;
     public Text timeText;
     public float timer = 0;
@@ -55,13 +56,15 @@ public class UIManager : MonoBehaviour
 
         while(_slider.value != 0)
         {
-            _slider.value -= 0.1f;
+            _slider.value -= 0.2f;
+            hpSliders[backNum - 1].alpha = 0;
+
+            yield return new WaitForSeconds(0.15f);
+
+            hpSliders[backNum - 1].alpha = 1;
+
             yield return new WaitForSeconds(0.15f);
         }
-
-
-        hpSliders[backNum - 1].SetActive(false);
-
     }
 
     public void StageClear()
