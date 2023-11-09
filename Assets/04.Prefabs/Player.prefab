@@ -120,6 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b24508273cd530c4196e010211ec7e62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentTime: 0
+  animCoolTime: 0.25
 --- !u!65 &5274699125484821146
 BoxCollider:
   m_ObjectHideFlags: 0

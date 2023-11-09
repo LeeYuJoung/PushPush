@@ -25,6 +25,13 @@ public class GameManager : MonoBehaviour
     public int inCorrectCount;
     public int currentLv = 1;
     public int maxLv = 10;
+    public int maxBackCount = 3;
+
+    public float currentTiem = 0;
+    public float dieCoolTime = 0.35f;
+
+    public bool isStart = true;
+    public bool isEnd = false;
 
     void Start()
     {
@@ -49,6 +56,9 @@ public class GameManager : MonoBehaviour
 
         currentCount = 0;
         maxCount = balls.Length;
+
+        playerPos.Clear();
+        ballPos.Clear();
     }
 
     public void CheckBallPosition()
@@ -75,7 +85,7 @@ public class GameManager : MonoBehaviour
 
             if(currentLv != maxLv +1)
             {
-                mapGenerator.MapDestroy(currentLv);
+                UIManager.Instance().StageClear();
             }
             else
             {
@@ -84,9 +94,54 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void CheckBackPosition()
+    {
+        playerPos.Push(playerController.transform.position);
+
+        List<Vector3> _ballPos = new List<Vector3>();
+        for(int i = 0; i < balls.Length; i++)
+        {
+            _ballPos.Add(balls[i].transform.position);
+        }
+        ballPos.Push(_ballPos);
+    }
+
     public void RollBack()
     {
+        if (playerPos.Count != 0)
+        {
+            if (maxBackCount == 0)
+            {
+                isEnd = true;
+                playerController.playerAnimation.SetTrigger("DIE");
 
+                while (currentTiem < dieCoolTime)
+                {
+                    currentTiem += Time.deltaTime;
+                }
+
+                UIManager.Instance().GameOver();
+                return;
+            }
+            UIManager.Instance().HPSlider(maxBackCount);
+            maxBackCount--;
+
+            playerController.transform.position = playerPos.Pop();
+
+            List<Vector3> _ballPos = ballPos.Pop();
+            for (int i = 0; i < balls.Length; i++)
+            {
+                balls[i].transform.position = _ballPos[i];
+            }
+        }
+    }
+
+    public void NextStage()
+    {
+        mapGenerator.MapDestroy(currentLv);
+        UIManager.Instance().timer = 0;
+        UIManager.Instance().stageClearPanel.SetActive(false);
+        isStart = true;
     }
 
     public void Retry()

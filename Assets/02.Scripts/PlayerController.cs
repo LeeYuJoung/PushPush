@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Animator playerAnimation;
+    public Animator playerAnimation;
 
     Ray ray;
     RaycastHit hit;
     RaycastHit hit2;
+
+    public float currentTime = 0;
+    public float animCoolTime = 0.25f;
 
     void Start()
     {
@@ -17,8 +20,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        currentTime += Time.deltaTime;
+
         if(Input.GetKeyDown(KeyCode.RightArrow))
         {
+            currentTime = 0;
             CheckOthers(Vector3.right);
             playerAnimation.SetBool("MOVE", true);
             playerAnimation.SetFloat("WALKX", 1);
@@ -26,6 +32,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            currentTime = 0;
             CheckOthers(Vector3.left);
             playerAnimation.SetBool("MOVE", true);
             playerAnimation.SetFloat("WALKX", -1);
@@ -33,6 +40,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
+            currentTime = 0;
             CheckOthers(Vector3.up);
             playerAnimation.SetBool("MOVE", true);
             playerAnimation.SetFloat("WALKY", 1);
@@ -40,19 +48,24 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
+            currentTime = 0;
             CheckOthers(Vector3.down);
             playerAnimation.SetBool("MOVE", true);
             playerAnimation.SetFloat("WALKY", -1);
             playerAnimation.SetFloat("WALKX", 0);
         }
-        else
+
+        if(currentTime > animCoolTime)
         {
+            currentTime = 0;
             playerAnimation.SetBool("MOVE", false);
         }
     }
 
     public void CheckOthers(Vector3 dir)
     {
+        GameManager.Instance().CheckBackPosition();
+
         if (Physics.Raycast(transform.position,transform.TransformDirection(dir), out hit, 1.0f))
         {
             Transform tr = hit.collider.transform;

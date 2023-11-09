@@ -65,6 +65,7 @@ public class MapGenerator : MonoBehaviour
                             mapObject.gameObject.name = mapObject.tag + $"( {j}, {i} )";
                             mapObject.transform.parent = GameObject.Find("Map").transform;
                             mapObject.transform.localPosition = new Vector3(j, -i, 0);
+                            GameManager.Instance().playerController = mapObject.GetComponent<PlayerController>();
                             break;
                         default:
                             break;
