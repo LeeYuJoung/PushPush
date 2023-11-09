@@ -72,10 +72,35 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
+
+        GameManager.Instance().SetBucketsAndBalls();
     }
 
-    public void MapDestroy()
+    public void MapDestroy(int lv)
     {
+        GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
+        GameObject[] buckets = GameObject.FindGameObjectsWithTag("Bucket");
+        GameObject[] balls = GameObject.FindGameObjectsWithTag("Ball");
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
 
+        for(int i = 0; i <  walls.Length; i++)
+        {
+            Destroy(walls[i]);
+        }
+
+        for (int i = 0; i < buckets.Length; i++)
+        {
+            Destroy(buckets[i]);
+        }
+
+        for (int i = 0; i < balls.Length; i++)
+        {
+            Destroy(balls[i]);
+        }
+
+        Destroy(player);
+
+        LoadMapData(lv);
+        MakeMap();
     }
 }
