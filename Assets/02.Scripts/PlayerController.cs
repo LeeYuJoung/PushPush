@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    Ray ray;
+    RaycastHit hit;
+    RaycastHit hit2;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
