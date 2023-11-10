@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
 
     public void CheckOthers(Vector3 dir)
     {
+        AudioManager.Instance().OnAudioPlay(AudioManager.Instance().moveSound);
         GameManager.Instance().CheckBackPosition();
 
         if (Physics.Raycast(transform.position,transform.TransformDirection(dir), out hit, 1.0f))

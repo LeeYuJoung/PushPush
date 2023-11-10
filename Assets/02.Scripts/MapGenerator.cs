@@ -10,7 +10,8 @@ public class MapGenerator : MonoBehaviour
 
     void Start()
     {
-        LoadMapData(1);
+        GameManager.Instance().isStart = true;
+        LoadMapData(PlayerPrefs.GetInt("CurrentLv"));
 
         for(int i = 0; i < 12; i++)
         {

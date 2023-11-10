@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,10 +25,11 @@ public class GameManager : MonoBehaviour
     public int correctCount;
     public int inCorrectCount;
     public int currentLv = 1;
+    public int clearLv = 1;
     public int maxLv = 10;
     public int maxBackCount = 3;
 
-    public bool isStart = true;
+    public bool isStart = false;
     public bool isEnd = false;
 
     void Start()
@@ -36,6 +38,8 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+
+        currentLv = PlayerPrefs.GetInt("CurrentLv");
     }
 
     public void SetBucketsAndBalls()
@@ -80,7 +84,13 @@ public class GameManager : MonoBehaviour
             currentCount = 0;
             maxCount = 0;
 
-            if(currentLv != maxLv +1)
+            if(PlayerPrefs.GetInt("ClearLv") < currentLv)
+            {
+                PlayerPrefs.SetInt("ClearLv", currentLv);
+            }
+            PlayerPrefs.SetInt("CurrentLv", currentLv);
+
+            if (currentLv != maxLv +1)
             {
                 UIManager.Instance().StageClear();
             }
@@ -143,9 +153,13 @@ public class GameManager : MonoBehaviour
         UIManager.Instance().timer = 0;
         UIManager.Instance().gameOverPanel.SetActive(false);
 
+        for(int i = 0; i < 3; i++)
+        {
+            Slider _hpSlider = UIManager.Instance().hpSliders[i].GetComponent<Slider>();
+            _hpSlider.value = 1;
+        }
         maxBackCount = 3;
         isStart = true;
-
     }
 
     IEnumerator OnDie()

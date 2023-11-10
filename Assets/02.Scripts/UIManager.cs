@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; 
 
 public class UIManager : MonoBehaviour
 {
@@ -11,9 +12,11 @@ public class UIManager : MonoBehaviour
         return instance;
     }
 
+    public GameObject stagePanel;
     public GameObject stageClearPanel;
     public GameObject gameOverPanel;
     public CanvasGroup[] hpSliders;
+    public GameObject[] stageActiveImages;
 
     public Text stageText;
     public Text stageFinalTimeText;
@@ -69,6 +72,8 @@ public class UIManager : MonoBehaviour
 
     public void StageClear()
     {
+        PlayerPrefs.SetInt("ClearLv", GameManager.Instance().currentLv);
+
         stageFinalTimeText.text = string.Format("Time {0:00}:{1:00}", timer / 60 % 60, timer % 60);
         GameManager.Instance().isStart = false;
         stageClearPanel.SetActive(true);
@@ -78,5 +83,46 @@ public class UIManager : MonoBehaviour
     {
         GameManager.Instance().isStart = false;
         gameOverPanel.SetActive(true);
+    }
+
+    public void GameStart()
+    {
+        SceneManager.LoadScene(1);
+        PlayerPrefs.SetInt("ClearLv", 1);
+        PlayerPrefs.SetInt("CurrentLv", 1);
+    }
+
+    public void GameContinueStart()
+    {
+        stagePanel.SetActive(true);
+        int clearStage = PlayerPrefs.GetInt("ClearLv");
+
+        for (int i = 1; i <= 10; i++)
+        {
+            if (clearStage < i)
+            {
+                stageActiveImages[i-1].SetActive(true);
+            }
+            else
+            {
+                stageActiveImages[i - 1].SetActive(false);
+            }
+        }
+    }
+
+    public void StageStart(int _stage)
+    {
+        SceneManager.LoadScene(1);
+        PlayerPrefs.SetInt("CurrentLv", _stage);
+    }
+
+    public void HomeButton()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void OnExit()
+    {
+        Application.Quit();
     }
 }

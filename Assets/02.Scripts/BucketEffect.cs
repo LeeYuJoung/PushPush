@@ -11,6 +11,7 @@ public class BucketEffect : MonoBehaviour
         if (other.CompareTag("Ball"))
         {
             GameObject _effect = Instantiate(bucketEffect,transform.position, transform.rotation);
+            AudioManager.Instance().OnAudioPlay(AudioManager.Instance().correctSound);
             Destroy(_effect, 0.35f);
         }
     }
