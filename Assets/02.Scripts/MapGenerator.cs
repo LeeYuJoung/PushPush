@@ -11,9 +11,10 @@ public class MapGenerator : MonoBehaviour
     void Start()
     {
         GameManager.Instance().isStart = true;
+        UIManager.Instance().stageText.text = string.Format("Stage{0:00}", PlayerPrefs.GetInt("CurrentLv"));
         LoadMapData(PlayerPrefs.GetInt("CurrentLv"));
 
-        for(int i = 0; i < 12; i++)
+        for (int i = 0; i < 12; i++)
         {
             for(int j = 0; j < 12; j++)
             {

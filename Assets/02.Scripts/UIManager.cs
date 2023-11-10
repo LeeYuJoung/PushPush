@@ -18,6 +18,10 @@ public class UIManager : MonoBehaviour
     public CanvasGroup[] hpSliders;
     public GameObject[] stageActiveImages;
 
+    public GameObject optionPanel;
+    public Sprite[] optionSprites;
+    public Image[] optionImages;
+
     public Text stageText;
     public Text stageFinalTimeText;
     public Text timeText;
@@ -36,6 +40,55 @@ public class UIManager : MonoBehaviour
         if (GameManager.Instance().isStart)
         {
             TimeControll();
+        }
+    }
+
+    public void OptionClick()
+    {
+        if (optionPanel.activeSelf)
+        {
+            optionPanel.SetActive(false);
+            optionImages[0].sprite = optionSprites[0];
+        }
+        else
+        {
+            optionPanel.SetActive(true);
+            optionImages[0].sprite = optionSprites[1];
+        }
+    }
+
+    public void StopButton()
+    {
+        if(Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+            optionImages[1].sprite = optionSprites[2];
+        }
+        else
+        {
+            Time.timeScale = 0;
+            optionImages[1].sprite = optionSprites[3];
+        }
+    }
+
+    public void SoundButton()
+    {
+        AudioSource backGroundAudio = GameObject.Find("BackgroundSound").GetComponent<AudioSource>();
+        AudioSource sfxAudio = GameObject.Find("AudioManager").GetComponent<AudioSource>();
+
+        if(sfxAudio.volume == 0)
+        {
+            backGroundAudio.volume = 0.35f;
+            sfxAudio.volume = 1;
+
+            optionImages[2].sprite = optionSprites[4];
+        }
+        else
+        {
+            backGroundAudio.volume = 0;
+            sfxAudio.volume = 0;
+
+            optionImages[2].sprite = optionSprites[5];
         }
     }
 
@@ -63,9 +116,7 @@ public class UIManager : MonoBehaviour
             hpSliders[backNum - 1].alpha = 0;
 
             yield return new WaitForSeconds(0.15f);
-
             hpSliders[backNum - 1].alpha = 1;
-
             yield return new WaitForSeconds(0.15f);
         }
     }
