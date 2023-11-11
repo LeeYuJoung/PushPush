@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -48,21 +49,21 @@ public class UIManager : MonoBehaviour
 
     public void OptionClick()
     {
-        if (optionPanel.activeSelf)
+        if (optionPanel.GetComponent<RectTransform>().anchoredPosition.y < 570f)
         {
-            optionPanel.SetActive(false);
+            optionPanel.GetComponent<RectTransform>().DOAnchorPosY(570f, 0.25f);
             optionImages[0].sprite = optionSprites[0];
         }
         else
         {
-            optionPanel.SetActive(true);
+            optionPanel.GetComponent<RectTransform>().DOAnchorPosY(150f, 0.25f);
             optionImages[0].sprite = optionSprites[1];
         }
     }
 
     public void StopButton()
     {
-        if(Time.timeScale == 0)
+        if (Time.timeScale == 0)
         {
             Time.timeScale = 1;
             optionImages[1].sprite = optionSprites[2];
@@ -79,7 +80,7 @@ public class UIManager : MonoBehaviour
         AudioSource backGroundAudio = GameObject.Find("BackgroundSound").GetComponent<AudioSource>();
         AudioSource sfxAudio = GameObject.Find("AudioManager").GetComponent<AudioSource>();
 
-        if(sfxAudio.volume == 0)
+        if (sfxAudio.volume == 0)
         {
             backGroundAudio.volume = 0.4f;
             sfxAudio.volume = 1;
@@ -113,7 +114,7 @@ public class UIManager : MonoBehaviour
     {
         Slider _slider = hpSliders[backNum - 1].GetComponent<Slider>();
 
-        while(_slider.value != 0)
+        while (_slider.value != 0)
         {
             _slider.value -= 0.2f;
             hpSliders[backNum - 1].alpha = 0;
@@ -155,7 +156,7 @@ public class UIManager : MonoBehaviour
         {
             if (clearStage < i)
             {
-                stageActiveImages[i-1].SetActive(true);
+                stageActiveImages[i - 1].SetActive(true);
             }
             else
             {
@@ -184,5 +185,15 @@ public class UIManager : MonoBehaviour
     public void OnExit()
     {
         Application.Quit();
+    }
+
+    public void ButtonClickEnter(GameObject _object)
+    {
+        _object.transform.DOScale(new Vector3(0.85f, 0.85f, 0.85f), 0.2f);
+    }
+
+    public void ButtonClickExit(GameObject _object)
+    {
+        _object.transform.DOScale(new Vector3(1f, 1f, 1f), 0.2f);
     }
 }

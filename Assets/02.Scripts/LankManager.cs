@@ -60,7 +60,7 @@ public class LankManager : MonoBehaviour
             }
         }
 
-        PlayerPrefs.SetFloat(_stage.ToString() + "BestTime", bestTime);
+        PlayerPrefs.SetFloat(_stage.ToString() + "BestTime", bestTime); 
         UIManager.Instance().stageBestTimeText.text = string.Format("{0:00}:{1:00}", bestTime / 60 % 60, bestTime % 60);
     }
 

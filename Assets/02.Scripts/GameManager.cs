@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -177,5 +178,15 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.85f);
         UIManager.Instance().GameOver();
         AudioManager.Instance().OnAudioPlay(AudioManager.Instance().gameOverSound);
+    }
+
+    public void MoveX(int _xMove)
+    {
+        playerController.xMove = _xMove;
+    }
+
+    public void MoveY(int _yMove)
+    {
+        playerController.yMove = _yMove;
     }
 }

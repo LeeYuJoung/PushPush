@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     RaycastHit hit;
     RaycastHit hit2;
 
+    public int xMove;
+    public int yMove;
     public float currentTime = 0;
     public float animCoolTime = 0.25f;
 
@@ -21,8 +23,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         currentTime += Time.deltaTime;
+        MoveButton();
 
-        if(Input.GetKeyDown(KeyCode.RightArrow) && Time.timeScale != 0)
+        if (Input.GetKeyDown(KeyCode.RightArrow) && Time.timeScale != 0)
         {
             currentTime = 0;
             CheckOthers(Vector3.right);
@@ -110,6 +113,52 @@ public class PlayerController : MonoBehaviour
         {
             transform.Translate(dir);
             GameManager.Instance().CheckBallPosition();
+        }
+    }
+
+    public void MoveButton()
+    {
+        if (xMove == 1 && Time.timeScale != 0)
+        {
+            currentTime = 0;
+            xMove = 0;
+            CheckOthers(Vector3.right);
+            playerAnimation.SetBool("MOVE", true);
+            playerAnimation.SetFloat("WALKX", 1);
+            playerAnimation.SetFloat("WALKY", 0);
+        }
+        else if (xMove == -1 && Time.timeScale != 0)
+        {
+            currentTime = 0;
+            xMove = 0;
+            CheckOthers(Vector3.left);
+            playerAnimation.SetBool("MOVE", true);
+            playerAnimation.SetFloat("WALKX", -1);
+            playerAnimation.SetFloat("WALKY", 0);
+        }
+        else if (yMove == 1 && Time.timeScale != 0)
+        {
+            currentTime = 0;
+            yMove = 0;
+            CheckOthers(Vector3.up);
+            playerAnimation.SetBool("MOVE", true);
+            playerAnimation.SetFloat("WALKY", 1);
+            playerAnimation.SetFloat("WALKX", 0);
+        }
+        else if (yMove == -1 && Time.timeScale != 0)
+        {
+            currentTime = 0;
+            yMove = 0;
+            CheckOthers(Vector3.down);
+            playerAnimation.SetBool("MOVE", true);
+            playerAnimation.SetFloat("WALKY", -1);
+            playerAnimation.SetFloat("WALKX", 0);
+        }
+
+        if (currentTime > animCoolTime)
+        {
+            currentTime = 0;
+            playerAnimation.SetBool("MOVE", false);
         }
     }
 }
