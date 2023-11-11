@@ -98,6 +98,7 @@ public class GameManager : MonoBehaviour
             if (currentLv != maxLv +1)
             {
                 UIManager.Instance().StageClear();
+                AudioManager.Instance().OnAudioPlay(AudioManager.Instance().stageClearSound);
                 LankManager.Instance().AddLankData(currentLv - 1, UIManager.Instance().timer);
                 LankManager.Instance().StageBestTime(currentLv - 1);
             }
@@ -134,6 +135,7 @@ public class GameManager : MonoBehaviour
                 return;
             }
             UIManager.Instance().HPSlider(maxBackCount);
+            AudioManager.Instance().OnAudioPlay(AudioManager.Instance().hpLessSound);
             maxBackCount--;
 
             playerController.transform.position = playerPos.Pop();
@@ -174,5 +176,6 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.85f);
         UIManager.Instance().GameOver();
+        AudioManager.Instance().OnAudioPlay(AudioManager.Instance().gameOverSound);
     }
 }

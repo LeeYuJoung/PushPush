@@ -860,6 +860,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   moveSound: {fileID: 8300000, guid: c8c335e6054cf20438f500500cb869dc, type: 3}
   correctSound: {fileID: 8300000, guid: fc26c5ba77f93b3449ec4eee801a9bd7, type: 3}
+  hpLessSound: {fileID: 8300000, guid: da4a2622abe334cb488e9a1baf0c8349, type: 3}
+  stageClearSound: {fileID: 8300000, guid: 7cc7d37818ed341adae32e6fe9d640b5, type: 3}
+  gameOverSound: {fileID: 8300000, guid: 4f5bc64a69b9741b49c08897fbf40c67, type: 3}
   dieSound: {fileID: 8300000, guid: d5c83022b99096a4b96eb7f55bc0a838, type: 3}
 --- !u!82 &364915657
 AudioSource:
