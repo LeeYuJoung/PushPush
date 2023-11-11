@@ -13,6 +13,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip moveSound;
     public AudioClip correctSound;
+    public AudioClip dieSound;
 
     void Start()
     {

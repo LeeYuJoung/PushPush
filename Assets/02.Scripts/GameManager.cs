@@ -34,7 +34,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if(instance == null)
+        if(instance != this && instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        else
         {
             instance = this;
         }
@@ -93,6 +98,8 @@ public class GameManager : MonoBehaviour
             if (currentLv != maxLv +1)
             {
                 UIManager.Instance().StageClear();
+                LankManager.Instance().AddLankData(currentLv - 1, UIManager.Instance().timer);
+                LankManager.Instance().StageBestTime(currentLv - 1);
             }
             else
             {
@@ -121,6 +128,7 @@ public class GameManager : MonoBehaviour
             {
                 isEnd = true;
                 playerController.playerAnimation.SetTrigger("DIE");
+                AudioManager.Instance().OnAudioPlay(AudioManager.Instance().dieSound);
                 StartCoroutine(OnDie());
 
                 return;

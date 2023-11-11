@@ -15,8 +15,10 @@ public class UIManager : MonoBehaviour
     public GameObject stagePanel;
     public GameObject stageClearPanel;
     public GameObject gameOverPanel;
+    public GameObject lankingPanel;
     public CanvasGroup[] hpSliders;
     public GameObject[] stageActiveImages;
+    public Text[] lankingTexts;
 
     public GameObject optionPanel;
     public Sprite[] optionSprites;
@@ -24,6 +26,7 @@ public class UIManager : MonoBehaviour
 
     public Text stageText;
     public Text stageFinalTimeText;
+    public Text stageBestTimeText;
     public Text timeText;
     public float timer = 0;
 
@@ -78,7 +81,7 @@ public class UIManager : MonoBehaviour
 
         if(sfxAudio.volume == 0)
         {
-            backGroundAudio.volume = 0.35f;
+            backGroundAudio.volume = 0.4f;
             sfxAudio.volume = 1;
 
             optionImages[2].sprite = optionSprites[4];
@@ -125,7 +128,7 @@ public class UIManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("ClearLv", GameManager.Instance().currentLv);
 
-        stageFinalTimeText.text = string.Format("Time {0:00}:{1:00}", timer / 60 % 60, timer % 60);
+        stageFinalTimeText.text = string.Format("My Time {0:00}:{1:00}", timer / 60 % 60, timer % 60);
         GameManager.Instance().isStart = false;
         stageClearPanel.SetActive(true);
     }
@@ -159,6 +162,12 @@ public class UIManager : MonoBehaviour
                 stageActiveImages[i - 1].SetActive(false);
             }
         }
+    }
+
+    public void LankingPanelShow()
+    {
+        lankingPanel.SetActive(true);
+        LankManager.Instance().ShowLanking();
     }
 
     public void StageStart(int _stage)

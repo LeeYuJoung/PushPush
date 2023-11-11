@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     {
         currentTime += Time.deltaTime;
 
-        if(Input.GetKeyDown(KeyCode.RightArrow))
+        if(Input.GetKeyDown(KeyCode.RightArrow) && Time.timeScale != 0)
         {
             currentTime = 0;
             CheckOthers(Vector3.right);
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
             playerAnimation.SetFloat("WALKX", 1);
             playerAnimation.SetFloat("WALKY", 0);
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) && Time.timeScale != 0)
         {
             currentTime = 0;
             CheckOthers(Vector3.left);
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
             playerAnimation.SetFloat("WALKX", -1);
             playerAnimation.SetFloat("WALKY", 0);
         }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        else if (Input.GetKeyDown(KeyCode.UpArrow) && Time.timeScale != 0)
         {
             currentTime = 0;
             CheckOthers(Vector3.up);
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
             playerAnimation.SetFloat("WALKY", 1);
             playerAnimation.SetFloat("WALKX", 0);
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && Time.timeScale != 0)
         {
             currentTime = 0;
             CheckOthers(Vector3.down);
