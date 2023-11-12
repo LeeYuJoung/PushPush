@@ -8069,7 +8069,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: LANKING
+  m_Text: BEST TIME
 --- !u!222 &1383071529
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8150,7 +8150,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB7AD\uD0B9\uBCF4\uAE30"
+  m_Text: "\uCD5C\uACE0\uC2DC\uAC04"
 --- !u!222 &1402865836
 CanvasRenderer:
   m_ObjectHideFlags: 0

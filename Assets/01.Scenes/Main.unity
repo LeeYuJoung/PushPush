@@ -1093,7 +1093,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB7AD\uD0B9\uBCF4\uAE30"
+  m_Text: "\uCD5C\uACE0\uC2DC\uAC04"
 --- !u!222 &373350747
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2448,7 +2448,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: LANKING
+  m_Text: BEST TIME
 --- !u!222 &722013299
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3183,7 +3183,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 30, y: 0, z: 30, w: 30}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5667,7 +5667,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 30, y: 0, z: 30, w: 30}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -6150,7 +6150,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 30, y: 30, z: 0, w: 30}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7276,7 +7276,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 30, y: 30, z: 0, w: 30}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

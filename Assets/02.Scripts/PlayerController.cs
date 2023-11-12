@@ -68,7 +68,6 @@ public class PlayerController : MonoBehaviour
     public void CheckOthers(Vector3 dir)
     {
         AudioManager.Instance().OnAudioPlay(AudioManager.Instance().moveSound);
-        GameManager.Instance().CheckBackPosition();
 
         if (Physics.Raycast(transform.position,transform.TransformDirection(dir), out hit, 1.0f))
         {
@@ -88,6 +87,7 @@ public class PlayerController : MonoBehaviour
                                 Debug.Log("Ball Check");
                                 break;
                             default:
+                                GameManager.Instance().CheckBackPosition();
                                 transform.Translate(dir);
                                 tr.Translate(dir);
                                 GameManager.Instance().CheckBallPosition();
@@ -96,6 +96,7 @@ public class PlayerController : MonoBehaviour
                     }
                     else
                     {
+                        GameManager.Instance().CheckBackPosition();
                         transform.Translate(dir);
                         tr.Translate(dir);
                         GameManager.Instance().CheckBallPosition();
@@ -104,6 +105,7 @@ public class PlayerController : MonoBehaviour
                 case "Wall":
                     break;
                 default:
+                    GameManager.Instance().CheckBackPosition();
                     transform.Translate(dir);
                     GameManager.Instance().CheckBallPosition();
                     break;
@@ -111,6 +113,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            GameManager.Instance().CheckBackPosition();
             transform.Translate(dir);
             GameManager.Instance().CheckBallPosition();
         }
@@ -153,6 +156,11 @@ public class PlayerController : MonoBehaviour
             playerAnimation.SetBool("MOVE", true);
             playerAnimation.SetFloat("WALKY", -1);
             playerAnimation.SetFloat("WALKX", 0);
+        }
+        else
+        {
+            xMove = 0;
+            yMove = 0;
         }
 
         if (currentTime > animCoolTime)

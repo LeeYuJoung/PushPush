@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class LankManager : MonoBehaviour
@@ -66,15 +67,15 @@ public class LankManager : MonoBehaviour
 
     public void ShowLanking()
     {
-        for(int i = 0; i < lankingData.Count; i++)
+        for(int i = 1; i <= lankingData.Count; i++)
         {
-            if(!PlayerPrefs.HasKey((i + 1).ToString() + "BestTime"))
+            if(!PlayerPrefs.HasKey((i).ToString() + "BestTime"))
             {
-                PlayerPrefs.SetFloat((i + 1).ToString() + "BestTime", 0);
+                PlayerPrefs.SetFloat((i).ToString() + "BestTime", 0);
             }
 
-            float _time = PlayerPrefs.GetFloat((i + 1).ToString() + "BestTime");
-            UIManager.Instance().lankingTexts[i].text = string.Format("Stage{0:00} {1:00}:{2:00}", i + 1, _time / 60 % 60, _time % 60);
+            float _time = PlayerPrefs.GetFloat((i).ToString() + "BestTime");
+            UIManager.Instance().lankingTexts[i - 1].text = string.Format("Stage{0:00} {1:00}:{2:00}", i, _time / 60 % 60, _time % 60);
         }
     }
 }
