@@ -17,6 +17,8 @@
 
 ## 💡 Points
 + CSV 데이터를 이용해 Map 자동 생성
++ Player 이동 마다 **Stack에 Player와 폭탄의 현재 위치값 저장**
+  - 되돌리기 클릭 시 Stsck에서 값을 가져와 Player와 폭탄의 위치값 변경
 
 ## 🔗 Links
  📺 [youtube : PushPush 플레이 영상](https://youtu.be/vyaC35kTcs4)
