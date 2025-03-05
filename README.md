@@ -23,6 +23,6 @@
 ## 🔗 Links
  📺 [youtube : PushPush 플레이 영상](https://youtu.be/vyaC35kTcs4)
  
- 📒 [Notion : PushPush 개발문서](https://www.notion.so/Push-Push-fb7477bac71b4221939b9c5b208dd6be)
+ 📒 [Notion : PushPush 개발문서](https://stump-lifter-1b4.notion.site/PushPush-1ad55d2c795381b099dff9d73185ea0a)
 
  🎮 [Game Download](https://drive.google.com/file/d/1o_7P9BoSq5fyahICUF3JEp_4D_hkg6Q5/view?usp=sharing)
